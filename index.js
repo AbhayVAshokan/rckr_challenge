@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 // Update current population limit here
-const POPULATION_LIMIT = 61954;
+const POPULATION_LIMIT = 1000;
 const RADIUS = 6371;
 
 // Function to calculate distance between two Points on Earth
@@ -24,7 +24,17 @@ const distance = (lat1, lat2, lon1, lon2) => {
   let c = 2 * Math.asin(Math.sqrt(a));
 
   // calculate the result
-  return c * RADIUS;
+  return parseFloat((Math.round(c * RADIUS * 100) / 100).toFixed(2));
+};
+
+// Function to return Euclidean distance: For the flat earthers.
+const euclidean = (lat1, lat2, lon1, lon2) => {
+  return parseFloat(
+    Math.round(
+      (Math.sqrt(Math.pow(lat1 - lat2, 2) + Math.pow(lon1 - lon2, 2)) * 100) /
+        100
+    ).toFixed(2)
+  );
 };
 
 // GET request to requested URL.
@@ -35,6 +45,7 @@ axios
   .then((res) => {
     // First 20 countries with a population greater than or equal to the population limit
     const countries = res.data
+      .sort((country1, country2) => country1.population - country2.population)
       .filter((country) => country.population >= POPULATION_LIMIT)
       .slice(0, 20);
 
@@ -57,6 +68,6 @@ axios
       }
     }
 
-    console.log(`Solution: ${result.toFixed(2)}`);
+    console.log(`Solution: ${(Math.round(result * 100) / 100).toFixed(2)}`);
   })
   .catch((err) => console.error(err));
