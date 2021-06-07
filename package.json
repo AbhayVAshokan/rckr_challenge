@@ -1,0 +1,19 @@
+{
+  "name": "rckr_challenge",
+  "version": "1.0.0",
+  "description": "Solution to RCKR Hiring challenge",
+  "main": "index.js",
+  "repository": "https://github.com/AbhayVAshokan/rckr_challenge",
+  "author": "AbhayVAshokan",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node index.ts"
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.3.2"
+  }
+}
