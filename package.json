@@ -8,12 +8,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "node index.ts"
+    "start": "node index"
   },
   "dependencies": {
     "axios": "^0.21.1"
-  },
-  "devDependencies": {
-    "typescript": "^4.3.2"
   }
 }
