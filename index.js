@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 // Update current population limit here
-const POPULATION_LIMIT = 1000;
+const POPULATION_LIMIT = 0;
 const RADIUS = 6371;
 
 // Function to calculate distance between two Points on Earth
@@ -49,12 +49,14 @@ axios
       .filter((country) => country.population >= POPULATION_LIMIT)
       .slice(0, 20);
 
+
     latlngs = [];
     countries.forEach((country) => {
       // If co-ordinates are missing for any country use 0.000 N 0.000 E
-      latlngs.push(country.latlng == null ? [0, 0] : country.latlng);
+      latlngs.push(country.latlng.length == 0 ? [0, 0] : country.latlng);
     });
 
+    console.log(latlngs);
     let result = 0;
     // Sum of lengths of all lines.
     for (let i = 0; i < latlngs.length; ++i) {
